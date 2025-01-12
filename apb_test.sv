@@ -1,6 +1,3 @@
-//--------------------------------------------------------
-//Top level Test class that instantiates env, configures and starts stimulus
-//--------------------------------------------------------
 class apb_base_test extends uvm_test;
 
   //Register with factory
@@ -20,9 +17,9 @@ class apb_base_test extends uvm_test;
 		env = apb_env::type_id::create("env", this);
 		apb_seq = apb_base_seq::type_id::create("apb_seq");
 		if (!uvm_config_db#(virtual apb_if)::get(this, "", "vif", vif)) begin
-			`uvm_fatal("APB/DRV/NOVIF", "No virtual interface specified for this test instance")
+			// ...
 		end 
-		uvm_config_db#(virtual apb_if)::set( this, "env", "vif", vif);
+		uvm_config_db#(virtual apb_if)::set( this, );
 	endfunction
 
 	//Run phase 
@@ -35,6 +32,6 @@ class apb_base_test extends uvm_test;
 	endtask: run_phase
 	
 	virtual function void end_of_elaboration_phase(uvm_phase phase);
-		print();// topology
+		// ...
 	endfunction 
 endclass

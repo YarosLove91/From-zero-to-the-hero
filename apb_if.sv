@@ -1,3 +1,4 @@
+// Интрефейс шины APB
 interface apb_if(input bit pclk);
 	logic [31:0] paddr;
 	logic        psel;
@@ -13,7 +14,6 @@ interface apb_if(input bit pclk);
 	logic pslverr;
 	logic pready;
 	
-
 
    //Master Clocking block - used for Drivers
 	clocking master_cb @(posedge pclk);

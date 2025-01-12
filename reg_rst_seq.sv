@@ -9,14 +9,9 @@ class reg_rst_seq extends uvm_sequence#(apb_rw);
 	`uvm_object_utils(reg_rst_seq)
 	//apb_base_seq apb_base_seq_h;
 	apb_rw rw_trans;
-	int reg_array[16]='{12'h000, 12'h004, 
-						12'h008, 12'h00C, 
-						12'hFD0, 12'hFD4, 
-						12'hFD8, 12'hFDC, 
-						12'hFE0, 12'hFE4,
-						12'hFE8, 12'hFEC, 
-						12'hFF0, 12'hFF4, 
-						12'hFF8, 12'hFFC}; 
+	int reg_array[16]='{
+		// ...
+	}; 
 	
 	function new(string name ="REG_RST_SEQ");
 		super.new(name);

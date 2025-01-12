@@ -6,8 +6,8 @@ class apb_monitor extends uvm_monitor;
 	`uvm_component_utils(apb_monitor)
 		virtual apb_if vif;
 		apb_rw tr;
-
-	///Monitor writes transaction objects to this port once detected on interface
+	
+	//
 	uvm_analysis_port#(apb_rw) ap;
 
 	function new(string name, uvm_component parent = null);
@@ -20,7 +20,7 @@ class apb_monitor extends uvm_monitor;
 		super.build_phase(phase);
 		tr=apb_rw::type_id::create("tr");
 		if (!uvm_config_db#(virtual apb_if)::get(this, "", "vif",vif)) begin
-			`uvm_fatal("APB/MON/NOVIF", "No virtual interface specified for this monitor instance")
+			// ...
 		end
 	endfunction
 
@@ -39,7 +39,7 @@ class apb_monitor extends uvm_monitor;
 
 			@ (this.vif.monitor_cb);
 			if (this.vif.monitor_cb.penable !== 1'b1) begin
-				`uvm_error("APB", "APB protocol violation:");
+				// ...
 			end
 			tr.data = (tr.apb_cmd == apb_rw::READ) ? this.vif.monitor_cb.prdata : '0;
 			tr.data = (tr.apb_cmd == apb_rw::WRITE) ? this.vif.monitor_cb.pwdata : '0;

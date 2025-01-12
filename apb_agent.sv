@@ -24,21 +24,20 @@ class apb_agent extends uvm_agent;
 	virtual function void build_phase(uvm_phase phase);
 
 		super.build_phase(phase);
-		sqr = apb_sequencer::type_id::create("sqr", this);
-		drv = apb_master_drv::type_id::create("drv", this);
-		mon = apb_monitor::type_id::create("mon", this);
+		// Sequencer
+		sqr = apb_sequencer::type_id::create("sequencer", this);
+		// Драйвер
+		drv = apb_master_drv::type_id::create("driver", this);
+		// Монитор
+		mon = apb_monitor::type_id::create("monitor", this);
 		
 		if (!uvm_config_db#(virtual apb_if)::get(this, "", "vif", vif)) begin
 			`uvm_fatal("APB/AGT/NOVIF", "No virtual interface specified for this agent instance")
 		end
-		uvm_config_db#(virtual apb_if)::set( this, "sqr", "vif", vif);
-		uvm_config_db#(virtual apb_if)::set( this, "drv", "vif", vif);
-		uvm_config_db#(virtual apb_if)::set( this, "mon", "vif", vif);
 	endfunction: build_phase
 
 	//Connect - driver and sequencer port to export
 	virtual function void connect_phase(uvm_phase phase);
-		drv.seq_item_port.connect(sqr.seq_item_export);
-		uvm_report_info("apb_agent::", "connect_phase, Connected driver to sequencer");
+	//...
 	endfunction
 endclass: apb_agent

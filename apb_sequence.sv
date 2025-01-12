@@ -19,11 +19,7 @@ class apb_base_seq extends uvm_sequence#(apb_rw);
 		//Create 1 random APB read/write transaction and send to driver
 		repeat(40) begin
 		start_item(rw_trans);
-		assert (rw_trans.randomize() with { rw_trans.data[31:16]==16'h0000;
-											rw_trans.data[3:0] inside {4'b1001, 4'b1101};
-										  }
-				);
-		//rw_trans.print();
+		// ...
 		finish_item(rw_trans);
 		end
 	endtask

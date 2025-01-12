@@ -24,7 +24,7 @@ class apb_reg_rst_test extends uvm_test;
         env = apb_env::type_id::create("env", this);
         reg_rst_seq_h = reg_rst_seq::type_id::create("reg_rst_seq_h");
         if (!uvm_config_db#(virtual apb_if)::get(this, "", "vif", vif)) begin
-            `uvm_fatal("APB/DRV/NOVIF", "No virtual interface specified for this test instance")
+            //...
         end 
         uvm_config_db#(virtual apb_if)::set( this, "env", "vif", vif);
     endfunction
